@@ -1,5 +1,7 @@
 # Solar Sentinel — Learn
 
+Live demo: https://solarsentinel.vercel.app/
+
 Solar Sentinel is a full-stack demo for ML-powered solar panel monitoring and anomaly detection. It includes:
 
 - A TypeScript + React frontend (Vite, Tailwind CSS, shadcn-ui)
