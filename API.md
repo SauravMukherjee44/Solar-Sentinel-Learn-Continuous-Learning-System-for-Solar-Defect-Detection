@@ -4,7 +4,7 @@
 
 This document describes the APIs available in the Solar Panel Defect Detection System. The system uses a hybrid API architecture:
 
-1. **Lovable Cloud Edge Functions** - Serverless functions for inference and pipeline management
+1. ** Edge Functions** - Serverless functions for inference and pipeline management
 2. **Python FastAPI Backend** - ML training, model management, and advanced operations
 3. **Supabase REST API** - Direct database access for CRUD operations
 
