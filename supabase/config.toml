@@ -1,0 +1,10 @@
+project_id = "knbllefougsxnyrkucnq"
+
+[functions.ml-pipeline]
+verify_jwt = false
+
+[functions.image-inference]
+verify_jwt = false
+
+[functions.simulate-inference]
+verify_jwt = false
