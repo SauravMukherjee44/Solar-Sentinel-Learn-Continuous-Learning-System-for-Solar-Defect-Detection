@@ -17,8 +17,7 @@ This document outlines the architectural decisions made for the **Continuous Lea
 │  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────────────┘ │
 └────────────────────────────────┬────────────────────────────────────────────┘
                                  │
-                    ┌────────────┴────────────┐
-                    │    Lovable Cloud        │
+                    ┌────────────┴────────────┐      │
                     │   (Supabase Backend)    │
                     ├─────────────────────────┤
                     │  • Edge Functions       │
@@ -31,8 +30,7 @@ This document outlines the architectural decisions made for the **Continuous Lea
               │                  │                  │
     ┌─────────▼─────────┐ ┌──────▼──────┐ ┌────────▼────────┐
     │  Python Backend   │ │   Vision    │ │  Storage        │
-    │  (FastAPI)        │ │   AI API    │ │  Buckets        │
-    │  ML Training      │ │  (Gemini)   │ │  training-images│
+    │  (FastAPI)        │ │   AI            training-images│
     └───────────────────┘ └─────────────┘ └─────────────────┘
 ```
 
@@ -56,21 +54,21 @@ This document outlines the architectural decisions made for the **Continuous Lea
 
 ### 2.2 Backend: Hybrid Architecture
 
-**Decision**: Dual backend approach with Lovable Cloud (Supabase) and optional Python/FastAPI.
+**Decision**: Dual backend approach with Supabasae Cloud (Supabase) and optional Python/FastAPI.
 
 **Rationale**:
-- **Lovable Cloud**: Provides instant database, auth, storage, and edge functions
+- **Supabasae Cloud**: Provides instant database, auth, storage, and edge functions
 - **Python Backend**: Required for ML training (PyTorch, YOLOv8) - cannot run in browser
 - **Edge Functions**: Lightweight inference proxying to Vision AI
 
 **Architecture Pattern**:
 ```
-Frontend ─┬─► Edge Functions ─► Vision AI (Gemini) [Inference]
+Frontend ─┬─► Edge Functions ─► Vision AI [Inference]
           │
           └─► Python Backend (FastAPI) [Training, Model Management]
 ```
 
-### 2.3 Database: PostgreSQL (via Lovable Cloud)
+### 2.3 Database: PostgreSQL (via Supabasae Cloud)
 
 **Decision**: Use PostgreSQL with Row Level Security (RLS).
 
@@ -90,9 +88,9 @@ Frontend ─┬─► Edge Functions ─► Vision AI (Gemini) [Inference]
 | `pipeline_steps` | Track training pipeline progress |
 | `system_status` | Global system state (active model, canary) |
 
-### 2.4 ML Inference: Vision AI (Gemini)
+### 2.4 ML Inference: Vision AI (Vision AI)
 
-**Decision**: Use Lovable AI integration with Gemini for inference.
+**Decision**: Use Supabasae AI integration with Vision AI for inference.
 
 **Rationale**:
 - No API key management required
@@ -192,8 +190,8 @@ All tables have RLS enabled with appropriate policies:
 
 | Secret | Purpose | Storage |
 |--------|---------|---------|
-| `SUPABASE_SERVICE_ROLE_KEY` | Edge function DB access | Lovable Secrets |
-| `LOVABLE_API_KEY` | Vision AI access | Lovable Secrets |
+| `SUPABASE_SERVICE_ROLE_KEY` | Edge function DB access | Supabasae Secrets |
+| `Supabasae_API_KEY` | Vision AI access | Supabasae Secrets |
 | `DATABASE_URL` | Python backend connection | Environment variable |
 
 ### 4.3 CORS Configuration
