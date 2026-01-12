@@ -1,4 +1,4 @@
-# Solar Sentinel — Learn
+# Solar Sentinel 
 
 Live demo: https://solarsentinel.vercel.app/
 
